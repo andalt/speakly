@@ -6,6 +6,7 @@ on:
       - prisma/migrations/**
     branches:
       - main
+  workflow_dispatch:
 
 jobs:
   deploy:
