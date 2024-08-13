@@ -27,7 +27,7 @@ jobs:
         run: npx prisma generate
 
       - name: Run migrations
-        run: npx prisma migrate deploy --preview-feature --verbose
+        run: npx prisma migrate deploy --preview-feature
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
 
