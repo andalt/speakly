@@ -5,8 +5,6 @@ import type { Adapter } from "next-auth/adapters";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
 
-import { signIn as signInAction } from "@/app/actions";
-
 declare module "next-auth" {
 	interface Session {
 		accessToken?: string;
@@ -71,17 +69,8 @@ export const authOptions: NextAuthOptions = {
 			}
 			return token;
 		},
-		async signIn({ user, account }) {
+		async signIn() {
 			try {
-				// await signInAction({
-				// 	id: user.id,
-				// 	name: user.name,
-				// 	email: user.email,
-				// 	image: user.image || null,
-				// 	accessToken: account?.access_token,
-				// 	idToken: account?.id_token,
-				// });
-
 				return true;
 			} catch (error) {
 				console.error("Error in signIn callback:", error);

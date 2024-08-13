@@ -10,8 +10,10 @@ export default function Home() {
                 <Container>
                     <div>The main page</div>
                     <Link href="topics">Topics</Link>
-                    <Authorization />
                 </Container>
+            </div>
+            <div>
+                <Authorization />
             </div>
         </main>
     );
