@@ -1,6 +1,6 @@
 import NextAuth from "next-auth";
 
-import { authOptions } from "@/lib/authOptions";
+import { authOptions } from "@/app/_authorization/utils/authOptions";
 
 const handler = NextAuth(authOptions);
 
