@@ -1,4 +1,4 @@
-import { Container } from "../../components/ui/Container";
+import { Container } from "@/ui/Container";
 
 export default function Topics() {
     return (

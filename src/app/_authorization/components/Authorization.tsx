@@ -2,7 +2,7 @@
 
 import { signIn, signOut, useSession } from "next-auth/react";
 
-import { Button } from "@/components/ui/button";
+import { Button } from "@/ui/Button";
 
 export function Authorization() {
     const { data: session, status } = useSession();
