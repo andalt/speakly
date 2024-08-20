@@ -5,5 +5,5 @@ interface IContainer {
 }
 
 export const Container = ({ children }: IContainer) => {
-    return <div>{children}</div>;
+    return <div className="mx-auto grid max-w-screen-xl flex-1">{children}</div>;
 };

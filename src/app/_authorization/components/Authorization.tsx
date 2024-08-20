@@ -1,8 +1,8 @@
 "use client";
 
-import { signIn, signOut, useSession } from "next-auth/react";
-
-import { Button } from "@/ui/Button";
+import { Button } from "@/ui/button";
+import { signIn, useSession } from "next-auth/react";
+import { AuthorizationMenu } from "./AuthorizationMenu";
 
 export function Authorization() {
     const { data: session, status } = useSession();
@@ -14,24 +14,23 @@ export function Authorization() {
             return <div key="statusUser">Loading...</div>;
         }
 
-        if (status === "authenticated") {
+        if (status === "authenticated" && session.user) {
+            const { image, name } = session.user;
+
             return (
-                <div key="statusUser">
-                    {session.user?.name}
-                    <br />
-                    <Button className="w-full" onClick={() => signOut()}>
-                        Sign Out
-                    </Button>
+                <div key="statusUser" className="flex gap-2 items-center">
+                    {name}
+                    <AuthorizationMenu userName={name} userAvatar={image} />
                 </div>
             );
         }
 
         return (
-            <Button key="statusUser" className="w-full" onClick={() => signIn("google")}>
+            <Button key="statusUser" variant="outline" className="w-full" onClick={() => signIn("google")}>
                 Sign in with Google
             </Button>
         );
     };
 
-    return <div className="w-full max-w-sm">{renderStateOfAuthorization()}</div>;
+    return <div className="w-full sm:ml-auto sm:w-auto">{renderStateOfAuthorization()}</div>;
 }
