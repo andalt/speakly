@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import SessionProviderComponent from "@/app/_authorization/components/SessionProvider";
 import { Header } from "@/components/Header";
-import { Container } from "@/ui/Container";
+import { Container } from "@/components/ui/Container";
 
 export const metadata: Metadata = {
     title: "Speakly",

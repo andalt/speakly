@@ -1,5 +1,5 @@
 import { Authorization } from "@/app/_authorization/components/Authorization";
-import { Container } from "@/ui/Container";
+import { Container } from "@/components/ui/Container";
 
 export const Header = () => {
     return (

@@ -1,14 +1,14 @@
 import { signOut } from "next-auth/react";
 
-import { Avatar, AvatarFallback, AvatarImage } from "@/ui/avatar";
-import { Button } from "@/ui/button";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
 import {
     DropdownMenu,
     DropdownMenuContent,
     DropdownMenuItem,
     DropdownMenuSeparator,
     DropdownMenuTrigger,
-} from "@/ui/dropdown-menu";
+} from "@/components/ui/dropdown-menu";
 
 interface IAuthorizationMenu {
     userName?: string | null;

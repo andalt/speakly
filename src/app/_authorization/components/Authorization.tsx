@@ -1,6 +1,6 @@
 "use client";
 
-import { Button } from "@/ui/button";
+import { Button } from "@/components/ui/button";
 import { signIn, useSession } from "next-auth/react";
 import { AuthorizationMenu } from "./AuthorizationMenu";
 
