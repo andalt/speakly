@@ -1,5 +1,5 @@
 import { DInfo } from "./DInfo";
-import { DTopics } from "./ DTopics";
+import { DTopics } from "./DTopics";
 import { DUsers } from "./DUsers";
 
 export const Dashboard = () => {

@@ -1,16 +1,27 @@
 "use client";
+import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import { signIn, useSession } from "next-auth/react";
 import { AuthorizationMenu } from "./AuthorizationMenu";
 
 export function Authorization() {
+    const [isLoading, setIsLoading] = useState(false);
     const { data: session, status } = useSession();
 
     console.log(session, status, "session");
 
+    const handleSignIn = async () => {
+        setIsLoading(true);
+        try {
+            await signIn("google");
+        } catch (error) {
+            setIsLoading(false);
+        }
+    };
+
     const renderStateOfAuthorization = () => {
-        if (status === "loading") {
+        if (status === "loading" || isLoading) {
             return <div key="statusUser">Loading...</div>;
         }
 
@@ -26,7 +37,7 @@ export function Authorization() {
         }
 
         return (
-            <Button key="statusUser" variant="outline" className="w-full" onClick={() => signIn("google")}>
+            <Button key="statusUser" variant="outline" className="w-full" onClick={handleSignIn}>
                 Sign in with Google
             </Button>
         );
