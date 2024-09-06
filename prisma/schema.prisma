@@ -20,6 +20,8 @@ model User {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  topics Topic[]
 }
 
 model Account {
@@ -77,11 +79,20 @@ model Authenticator {
   @@id([userId, credentialID])
 }
 
+enum ETopic {
+  draft
+  denied
+  publish
+}
+
 model Topic {
   id          Int      @id @default(autoincrement())
-  title       String
+  title       String?
   description String?
-  type        String
+  type        ETopic @default(draft)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+
+  author      User @relation(fields: [email], references: [id])
+  email       String
 }
