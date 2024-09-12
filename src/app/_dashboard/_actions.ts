@@ -1,18 +1,47 @@
 "use server";
 
-import type { CreateTopic } from "../api/topic/route";
+import { prisma } from "@/app/prismaClient";
 
-export async function createTopic(body: CreateTopic) {
+export interface CreateTopic {
+	email: string;
+	title: string | null;
+	description: string | null;
+}
+
+export async function createTopic(body: CreateTopic | null) {
 	try {
-		const data = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/topic`, {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
+		if (!body) {
+			throw new Error("Parameters are null");
+		}
+
+		const { email, title, description } = body;
+
+		const topic = await prisma.topic.create({
+			data: {
+				email,
+				title,
+				description,
 			},
-			credentials: "include",
-			body: JSON.stringify(body),
 		});
-	} catch (err) {
-		console.log(err);
+
+		return topic;
+	} catch (error) {
+		console.log(error, "error");
+		return { message: "Something went wrong" };
+	}
+}
+
+export async function removeTopic(id: number) {
+	try {
+		const topic = await prisma.topic.delete({
+			where: {
+				id,
+			},
+		});
+
+		return topic;
+	} catch (error) {
+		console.log(error, "error");
+		return { message: "Something went wrong" };
 	}
 }
