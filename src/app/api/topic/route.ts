@@ -9,6 +9,8 @@ export interface CreateTopic {
 	description: string;
 }
 
+const secret = process.env.NEXTAUTH_SECRET;
+
 export async function POST(req: NextRequest, res: NextResponse) {
 	const { email, title, description } = (await req.json()) as CreateTopic;
 

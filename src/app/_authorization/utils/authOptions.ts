@@ -9,6 +9,9 @@ declare module "next-auth" {
 	interface Session {
 		accessToken?: string;
 		idToken?: string;
+		user?: {
+			id?: string;
+		};
 	}
 }
 
@@ -27,6 +30,7 @@ export const authOptions: NextAuthOptions = {
 	},
 	secret: process.env.NEXTAUTH_SECRET,
 	adapter: PrismaAdapter(prisma) as Adapter,
+	debug: true,
 	providers: [
 		GoogleProvider({
 			clientId: process.env.GOOGLE_ID as string,
@@ -61,12 +65,20 @@ export const authOptions: NextAuthOptions = {
 		async session({ session, token }) {
 			session.accessToken = token.accessToken;
 			session.idToken = token.idToken;
+
+			if (session.user) {
+				session.user.id = token.sub;
+			}
 			return session;
 		},
-		async jwt({ token, account }) {
+		async jwt({ token, account, user }) {
 			if (account) {
 				token.accessToken = account.access_token;
 				token.idToken = account.id_token;
+			}
+
+			if (user) {
+				token.sub = user.id;
 			}
 			return token;
 		},

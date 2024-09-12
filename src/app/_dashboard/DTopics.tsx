@@ -4,7 +4,7 @@ import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { createTopic } from "./_actions";
+import { createTopic, removeTopic } from "./_actions";
 
 export const DTopics = () => {
     return (
@@ -20,14 +20,25 @@ export const DTopics = () => {
                 </Link>
                 <Button
                     onClick={async () => {
-                        await createTopic({
+                        const result = await createTopic({
                             email: "andalt11@gmail.com",
                             title: "First topic",
                             description: "description",
                         });
+
+                        console.log(result, "result");
                     }}
                 >
                     Создать топик
+                </Button>
+                <Button
+                    onClick={async () => {
+                        const result = await removeTopic(6);
+
+                        console.log(result, "result");
+                    }}
+                >
+                    Удалить последний топик
                 </Button>
             </CardFooter>
         </Card>

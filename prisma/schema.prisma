@@ -93,6 +93,6 @@ model Topic {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
-  author      User @relation(fields: [email], references: [id])
+  author      User @relation(fields: [email], references: [email])
   email       String
 }
