@@ -33,10 +33,6 @@ export async function createTopic(body: CreateTopic | null) {
 
 export async function removeTopic(id: number) {
 	try {
-		if (!id) {
-			throw new Error("Parameters are null");
-		}
-
 		const topic = await prisma.topic.delete({
 			where: {
 				id,
